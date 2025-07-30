@@ -46,7 +46,7 @@ with mp_face_mesh.FaceMesh(
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
                 for idx, lm in enumerate(face_landmarks.landmark):
-                    if idx not in REGION_INDICES:
+                    if idx in REGION_INDICES:
                         h, w, _ = frame.shape
                         x, y = int(lm.x * w), int(lm.y * h)
                         cv2.circle(frame, (x, y), 1, (0, 255, 0), -1)
