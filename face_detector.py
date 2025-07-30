@@ -16,8 +16,8 @@ LEFT_EYEBROW = [70, 63, 105, 66, 107]
 LEFT_EYE = [33, 160, 158, 133, 153, 144, 163, 7, 246]
 RIGHT_EYEBROW = [336, 296, 334, 293, 300]
 RIGHT_EYE = [362, 385, 387, 263, 373, 380, 390, 249, 466]
-TOP_LIP = [61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 78, 95, 88]
-BOTTOM_LIP = [178, 87, 14, 317, 402, 318, 324, 308, 291, 375, 321, 405]
+TOP_LIP = [0, 37, 39, 40, 41, 38,12, 268, 267,269, 270, 271, 272]
+BOTTOM_LIP = [178, 87, 14, 317, 402, 318, 324, 308, 291, 375, 321, 405, 61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 78, 95, 88]
 # For Eye Trackingss
 LEFT_IRIS = [474, 475, 476, 477]
 RIGHT_IRIS = [469, 470, 471, 472]
@@ -49,7 +49,11 @@ with mp_face_mesh.FaceMesh(
                     if idx in REGION_INDICES:
                         h, w, _ = frame.shape
                         x, y = int(lm.x * w), int(lm.y * h)
+                        # Drawing dots 
                         cv2.circle(frame, (x, y), 1, (0, 255, 0), -1)
+                        # Drawing the numbers 
+                        # cv2.putText(frame, str(idx), (x,y), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,255), 1, cv2.LINE_8)
+
 
         cv2.imshow("Selective Face Landmarks", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
